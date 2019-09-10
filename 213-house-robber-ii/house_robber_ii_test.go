@@ -16,6 +16,18 @@ func TestHouseRobber(t *testing.T) {
 			Input: []int{1, 2, 3, 1},
 			Want:  4,
 		},
+		{
+			Input: []int{1, 2, 3, 4},
+			Want:  6,
+		},
+		{
+			Input: []int{2, 3, 4},
+			Want:  4,
+		},
+		{
+			Input: []int{1, 3, 1, 3, 100},
+			Want:  103,
+		},
 	}
 
 	for _, tc := range ts {

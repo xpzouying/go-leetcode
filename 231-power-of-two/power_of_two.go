@@ -1,26 +1,32 @@
 package power_of_two
 
 func isPowerOfTwo(n int) bool {
-	if n == 0 {
-		return false
-	}
 
-	if n == 1 {
-		return true
-	}
+	// --- 解法1 ---
+	// if n == 0 {
+	// 	return false
+	// }
 
-	for {
-		if n == 1 {
-			return true
-		}
+	// if n == 1 {
+	// 	return true
+	// }
 
-		a := n / 2
-		b := n % 2
+	// for {
+	// 	if n == 1 {
+	// 		return true
+	// 	}
 
-		if b != 0 {
-			return false
-		}
+	// 	a := n / 2
+	// 	b := n % 2
 
-		n = a
-	}
+	// 	if b != 0 {
+	// 		return false
+	// 	}
+
+	// 	n = a
+	// }
+
+	// --- 解法2 ---
+
+	return (n > 0) && ((n & (n - 1)) == 0)
 }

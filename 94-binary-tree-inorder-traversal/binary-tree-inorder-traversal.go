@@ -97,5 +97,72 @@ func inorderTraversal(root *TreeNode) []int {
 // 推荐：https://leetcode-cn.com/problems/binary-tree-inorder-traversal/solution/yan-se-biao-ji-fa-yi-chong-tong-yong-qie-jian-ming/
 // 简单易懂
 //
-// func inorderTraversal(root *TreeNode) []int {
-// }
+
+// --- 3. 颜色标记法 ---
+// 推荐：https://leetcode-cn.com/problems/binary-tree-inorder-traversal/solution/yan-se-biao-ji-fa-yi-chong-tong-yong-qie-jian-ming/
+// 简单易懂
+//
+// 思路：
+// 访问过的节点，进行染色标记（即打标示进行标记），
+// 所有节点一起压栈，顺序为：
+// 1. 右节点
+// 2. 自身节点
+// 3. 左节点
+//
+// 如果在过程中，遇到已经标示过的，则不进行压栈操作，而进行该节点的输出操作
+func inorderTraversal(root *TreeNode) []int {
+
+	if root == nil {
+		return nil
+	}
+
+	stack := []*ZyNode{
+		&ZyNode{
+			node: root,
+			tag:  false, // 初始条件：未标示过，未处理过
+		},
+	}
+
+	res := make([]int, 0) // 存放结果
+
+	for {
+		if len(stack) == 0 {
+			break
+		}
+
+		node := stack[len(stack)-1]  // top
+		stack = stack[:len(stack)-1] // pop
+
+		if node.tag == true {
+			// 如果已经标示过，则输出结果
+			res = append([]int{node.node.Val}, res...)
+		} else {
+			// 否则押入对应的子节点
+
+			if node.node.Left != nil {
+				stack = append(stack, &ZyNode{
+					node: node.node.Left,
+					tag:  false,
+				})
+			}
+
+			node.tag = true
+			stack = append(stack, node)
+
+			if node.node.Right != nil {
+				stack = append(stack, &ZyNode{
+					node: node.node.Right,
+					tag:  false,
+				})
+			}
+		}
+	}
+
+	return res
+
+}
+
+type ZyNode struct {
+	node *TreeNode // 当前节点
+	tag  bool      // 是否标示
+}

@@ -17,6 +17,16 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
+/**
+
+解题思路：
+
+判断是否是查找二叉树时，不光是需要检查左右子节点是否满足，
+还要判断左右子树是否满足。
+
+所以在递归时，需要输入取值的范围。
+*/
+
 func isValidBST(root *TreeNode) bool {
 	if root == nil {
 		return true
@@ -25,6 +35,9 @@ func isValidBST(root *TreeNode) bool {
 	return check(root.Left, math.MinInt64, root.Val) && check(root.Right, root.Val, math.MaxInt64)
 }
 
+// check检查root子树是否满足查找二叉树的条件
+// minVal：最小取值
+// maxVal：最大取值
 func check(root *TreeNode, minVal, maxVal int) bool {
 	if root == nil {
 		return true

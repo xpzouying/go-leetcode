@@ -40,6 +40,10 @@ func TestNumDecodings(t *testing.T) {
 			input: "100",
 			want:  0,
 		},
+		{
+			input: "101",
+			want:  1,
+		},
 	}
 
 	for _, tc := range ts {

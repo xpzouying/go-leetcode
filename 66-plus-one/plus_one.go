@@ -1,7 +1,10 @@
 package plus_one
 
-
 func plusOne(digits []int) []int {
+
+	if len(digits) == 0 {
+		return nil
+	}
 
 	for i := len(digits) - 1; i >= 0; {
 		if digits[i] == 9 {

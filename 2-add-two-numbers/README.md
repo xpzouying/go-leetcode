@@ -18,3 +18,10 @@
 来源：力扣（LeetCode）
 链接：https://leetcode-cn.com/problems/add-two-numbers
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+
+
+# 运行结果
+
+执行用时 : 20 ms , 在所有 golang 提交中击败了 34.58% 的用户
+
+内存消耗 : 4.9 MB , 在所有 golang 提交中击败了 94.01% 的用户

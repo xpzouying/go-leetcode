@@ -9,8 +9,6 @@ package diameter_of_binary_tree
  * }
  */
 
-var max int
-
 type TreeNode struct {
 	Val   int
 	Left  *TreeNode
@@ -22,12 +20,13 @@ func diameterOfBinaryTree(root *TreeNode) int {
 		return 0
 	}
 
-	helper(root)
+	var max int
+	helper(root, &max)
 
 	return max
 }
 
-func helper(root *TreeNode) int {
+func helper(root *TreeNode, max *int) int {
 	if root == nil {
 		return 0
 	}
@@ -40,15 +39,17 @@ func helper(root *TreeNode) int {
 	var rightLen int
 
 	if root.Left != nil {
-		leftLen = helper(root.Left) + 1
+		leftLen = helper(root.Left, max) + 1
 	}
 
 	if root.Right != nil {
-		rightLen = helper(root.Right) + 1
+		rightLen = helper(root.Right, max) + 1
 	}
 
 	// 更新最长半径
-	max = MAX(max, leftLen+rightLen)
+	if leftLen+rightLen > *max {
+		*max = leftLen + rightLen
+	}
 
 	return MAX(leftLen, rightLen)
 }

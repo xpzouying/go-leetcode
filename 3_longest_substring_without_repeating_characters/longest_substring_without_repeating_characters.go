@@ -36,15 +36,18 @@ func lengthOfLongestSubstring(s string) int {
 			// 如果已经存在
 			// 1. 更新m中的记录
 			// 2. 挪动begin下标
-			begin = index + 1
-			end++
 
-			newSubLen := end - begin
-			newM := make(map[byte]int, newSubLen)
-			for i := begin; i < end; i++ {
-				newM[s[i]] = i
+			newBegin := index + 1
+			for i := begin; i < newBegin; i++ {
+				if s[i] == s[end] {
+					m[s[i]] = end
+					continue
+				}
+
+				delete(m, s[i])
 			}
-			m = newM
+			begin = newBegin
+			end++
 		}
 	}
 

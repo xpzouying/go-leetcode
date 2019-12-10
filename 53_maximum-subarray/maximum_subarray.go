@@ -1,33 +1,32 @@
 package maximum_subarray
 
-func maxSubArray(nums []int) int {
+import "math"
 
-	/*
-		SUM[i] = max{
-			SUM[i-1] + a[i],
-			a[i]
-		}
-	*/
+func maxSubArray(nums []int) int {
+	if len(nums) == 0 {
+		return 0
+	}
 
 	if len(nums) == 1 {
 		return nums[0]
 	}
 
-	sum := make([]int, len(nums))
-	sum[0] = nums[0]
-	max := sum[0]
+	DP := make([]int, len(nums)+1)
 
-	for i := 1; i < len(nums); i++ {
-		n := sum[i-1] + nums[i]
+	DP[0] = math.MinInt32
+	max := math.MinInt32
 
-		if n > nums[i] {
-			sum[i] = n
+	for i := 0; i < len(nums); i++ {
+		n1 := DP[i] + nums[i]
+
+		if n1 > nums[i] {
+			DP[i+1] = n1
 		} else {
-			sum[i] = nums[i]
+			DP[i+1] = nums[i]
 		}
 
-		if sum[i] > max {
-			max = sum[i]
+		if DP[i+1] > max {
+			max = DP[i+1]
 		}
 	}
 

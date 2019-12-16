@@ -16,6 +16,14 @@ func TestReverseWords(t *testing.T) {
 			Input: "the sky is blue",
 			Want:  "blue is sky the",
 		},
+		{
+			Input: "  hello world!  ",
+			Want:  "world! hello",
+		},
+		{
+			Input: "a good   example",
+			Want:  "example good a",
+		},
 	}
 
 	for _, tc := range ts {

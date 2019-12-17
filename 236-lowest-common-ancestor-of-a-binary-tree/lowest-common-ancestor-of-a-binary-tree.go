@@ -20,6 +20,8 @@ func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
 		return nil
 	}
 
+	// 其中一个节点在根节点，另外一个节点不需要查找，
+	// 因为从根节点开始，必然在其子节点
 	if root.Val == p.Val || root.Val == q.Val {
 		return root
 	}

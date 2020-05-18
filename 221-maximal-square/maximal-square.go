@@ -26,6 +26,7 @@ func maximalSquare(matrix [][]byte) int {
 
 		for j := 1; j < len(matrix[i]); j++ {
 
+			// 只有当matrix[i][j] 为 1时，才开始计算
 			if matrix[i][j] == '0' {
 				continue
 			}

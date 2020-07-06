@@ -1,6 +1,51 @@
 package kth_largest_element_in_an_array
 
+// 优化版本
 func findKthLargest(nums []int, k int) int {
+	l := len(nums)
+
+	left := 0
+	right := l - 1
+
+	target := l - k
+
+	for {
+		index := helper(&nums, left, right)
+
+		if index == target {
+			return nums[index]
+		}
+
+		if index > target {
+			right = index - 1
+		} else {
+			left = index + 1
+		}
+	}
+}
+
+// 返回最左边元素的最终位置
+func helper(n *[]int, left, right int) int {
+	nums := *n
+	// 哨兵
+	p := nums[left]
+
+	j := left
+	for i := left + 1; i <= right; i++ {
+		// 把小的都排到最前面
+		if nums[i] < p {
+			j++
+			nums[i], nums[j] = nums[j], nums[i]
+		}
+	}
+
+	nums[left], nums[j] = nums[j], nums[left]
+
+	return j
+}
+
+// version 1
+func findKthLargest2(nums []int, k int) int {
 	klist := NewKList(k)
 
 	for _, n := range nums {

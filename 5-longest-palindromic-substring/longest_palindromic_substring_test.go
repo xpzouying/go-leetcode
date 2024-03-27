@@ -24,13 +24,28 @@ func TestLongestPalindrome(t *testing.T) {
 			Input: "ccc",
 			Want:  []string{"ccc"},
 		},
+		{
+			Input: "abcba",
+			Want:  []string{"abcba"},
+		},
+		{
+			Input: "aacabdkacaa",
+			Want:  []string{"aca"},
+		},
 	}
 
 	for _, tc := range ts {
-		got := longestPalindrome(tc.Input)
 
-		if !Contains(tc.Want, got) {
-			t.Errorf("input: %s, want: %s, got: %s", tc.Input, tc.Want, got)
+		for _, fn := range []func(s string) string{
+			longestPalindrome,
+			longestPalindromeV2,
+		} {
+
+			got := fn(tc.Input)
+
+			if !Contains(tc.Want, got) {
+				t.Errorf("input: %s, want: %s, got: %s", tc.Input, tc.Want, got)
+			}
 		}
 	}
 
